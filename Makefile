@@ -12,7 +12,7 @@ clean:
 	rm -rf $(ARTIFACTS)
 
 serve: docs/_build/html
-	cd docs/_build/html; python3 -m http.server 8888
+	cd docs/_build/html; python3 -m http.server -b 127.0.0.1 8888
 
 docs/_build/html: docs/*
 	. .venv/bin/activate; $(MAKE) -C docs html
