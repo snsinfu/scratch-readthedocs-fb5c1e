@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-FIGURE_SIZE = (4.5, 3.5)
+FIGURE_SIZE = (4, 3.2)
 FIGURE_DPI = 72
 
 COLOR_PALETTE = ["xkcd:soft green", "xkcd:pastel red"]

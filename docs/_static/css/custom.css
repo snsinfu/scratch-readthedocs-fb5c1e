@@ -1,5 +1,5 @@
 .math {
-  font-size: 75%;
+  font-size: 80%;
 }
 
 a.reference > code.xref {
@@ -10,4 +10,5 @@ a.reference > code.xref {
 
 .section {
   clear: both;
+  margin-bottom: 3em;
 }

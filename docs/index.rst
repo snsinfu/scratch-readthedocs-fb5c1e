@@ -5,12 +5,9 @@ MicroMD documentation
    :maxdepth: 2
    :caption: Contents:
 
+   system
+   forcefield
+   forcefield_templates
    potentials
+   simulations
 
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
