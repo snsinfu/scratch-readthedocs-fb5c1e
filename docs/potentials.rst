@@ -23,28 +23,28 @@ Potentials
 
 .. list-table::
 
-   * - :cpp:class:`constant_potential`
+   * - `constant_potential`_
      - constant energy
 
-   * - :cpp:class:`harmonic_potential`
+   * - `harmonic_potential`_
      - harmonic oscillator
 
-   * - :cpp:class:`spring_potential`
+   * - `spring_potential`_
      - harmonic oscillator
 
-   * - :cpp:class:`semispring_potential`
+   * - `semispring_potential`_
      - harmonic oscillator
 
-   * - :cpp:class:`lennard_jones_potential`
+   * - `lennard_jones_potential`_
      - Lennard-Jones 12-6
 
-   * - :cpp:class:`wca_potential`
+   * - `wca_potential`_
      - Lennard-Jones 12-6 with cut-off at the energy minimum
 
-   * - :cpp:class:`softcore_potential`
+   * - `softcore_potential`_
      - soft-core repulsion
 
-   * - :cpp:class:`softwell_potential`
+   * - `softwell_potential`_
      - soft-well attraction
 
 
@@ -52,7 +52,11 @@ Potentials
 References
 ----------
 
-.. cpp:class:: constant_potential
+constant_potential
+^^^^^^^^^^^^^^^^^^
+
+.. figure:: _static/img/constant_potential.png
+   :align: right
 
 A potential with constant energy:
 
@@ -60,8 +64,11 @@ A potential with constant energy:
    u(\boldsymbol{r}) = \varepsilon
 
 
+harmonic_potential
+^^^^^^^^^^^^^^^^^^
 
-.. cpp:class:: harmonic_potential
+.. figure:: _static/img/harmonic_potential.png
+   :align: right
 
 A long-range, attractive potential of the form:
 
@@ -69,7 +76,11 @@ A long-range, attractive potential of the form:
    u(\boldsymbol{r}) = \frac{K}{2} r^2
 
 
-.. cpp:class:: spring_potential
+spring_potential
+^^^^^^^^^^^^^^^^
+
+.. figure:: _static/img/spring_potential.png
+   :align: right
 
 A long-range, attractive potential of the form:
 
@@ -77,7 +88,11 @@ A long-range, attractive potential of the form:
    u(\boldsymbol{r}) = \frac{K}{2} \left( r - b \right)^2
 
 
-.. cpp:class:: semispring_potential
+semispring_potential
+^^^^^^^^^^^^^^^^^^^^
+
+.. figure:: _static/img/semispring_potential.png
+   :align: right
 
 A long-range, attractive potential of the form:
 
@@ -87,7 +102,11 @@ A long-range, attractive potential of the form:
    \left( r > b \right)
 
 
-.. cpp:class:: lennard_jones_potential
+lennard_jones_potential
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. figure:: _static/img/lennard_jones_potential.png
+   :align: right
 
 A long-range potential of the form:
 
@@ -99,7 +118,24 @@ A long-range potential of the form:
        \Big)
 
 
-.. cpp:class:: wca_potential
+soft_lennard_jones_potential
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. figure:: _static/img/soft_lennard_jones_potential.png
+   :align: right
+
+A long-range potential of the form:
+
+.. math::
+   u(\boldsymbol{r})
+     = \varepsilon \left(
+       \frac{k + 1}{k + (r / \sigma)^6}
+       - 1
+     \right)^2
+
+
+wca_potential
+^^^^^^^^^^^^^
 
 A short-range, repulsive potential of the form:
 
@@ -113,7 +149,11 @@ A short-range, repulsive potential of the form:
    \left( r < \sigma \right)
 
 
-.. cpp:class:: softcore_potential
+softcore_potential
+^^^^^^^^^^^^^^^^^^
+
+.. figure:: _static/img/softcore_potential.png
+   :align: right
 
 A short-range, repulsive potential of the form:
 
@@ -127,7 +167,11 @@ A short-range, repulsive potential of the form:
    \left( r < \sigma \right)
 
 
-.. cpp:class:: softwell_potential
+softwell_potential
+^^^^^^^^^^^^^^^^^^
+
+.. figure:: _static/img/softwell_potential.png
+   :align: right
 
 A long-range, attractive potential of the form:
 
@@ -137,16 +181,8 @@ A long-range, attractive potential of the form:
 
 .. code:: cpp
 
-   // Define attractive interactions.
-   
-   md::softwell_potential pot = {
-       .energy         = 2.0,   // epsilon parameter
-       .decay_distance = 0.5    // sigma parameter
+   md::softwell_potential<4> pot = {
+       .energy         = 2.0,   // epsilon
+       .decay_distance = 0.5    // sigma
    };
-   
-   auto softwell = system.add_forcefield(
-       md::make_pairwise_forcefield(pot)
-   );
-   softwell->add_pair(0, 1);
-
 

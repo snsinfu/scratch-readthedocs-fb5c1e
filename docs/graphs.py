@@ -18,6 +18,10 @@ XKCD_SCALE = 0.3
 OUTPUT_BASEDIR = "_static/img"
 
 
+def constant_potential(r, *, epsilon):
+    return np.array([epsilon] * len(r))
+
+
 def harmonic_potential(r, *, k):
     return 0.5 * k * r ** 2
 
@@ -35,6 +39,10 @@ def lennard_jones_potential(r, *, epsilon, sigma):
     return epsilon * ((sigma / r) ** 12 - 2 * (sigma / r) ** 6)
 
 
+def soft_lennard_jones_potential(r, *, k, epsilon, sigma):
+    return epsilon * ((k + 1) / (k + (r / sigma)**6) - 1)**2 - epsilon
+
+
 def softcore_potential(r, *, epsilon, sigma, p, q):
     return epsilon * np.maximum(0, 1 - (r / sigma) ** p) ** q
 
@@ -44,6 +52,21 @@ def softwell_potential(r, *, epsilon, sigma, p):
 
 
 def main():
+    make(
+        constant_potential,
+        [
+            dict(epsilon=1),
+        ],
+        xticks={
+            "values": [0.0, 0.3, 0.6, 0.9],
+            "labels": ["0", "", "", ""],
+        },
+        yticks={
+            "values": [0.0, 0.5, 1.0, 1.5],
+            "labels": ["0", "", "epsilon", ""],
+        },
+    )
+
     make(
         harmonic_potential,
         [
@@ -104,6 +127,21 @@ def main():
         },
         ymin=-1.1,
         ymax=2.1,
+    )
+
+    make(
+        soft_lennard_jones_potential,
+        [
+            dict(k=0.57735, epsilon=1, sigma=0.3),
+        ],
+        xticks={
+            "values": [0.0, 0.3, 0.6, 0.9],
+            "labels": ["0", "sigma", "", ""],
+        },
+        yticks={
+            "values": [-1.0, 0.0, 1.0, 2.0],
+            "labels": ["-epsilon", "0", "", ""],
+        },
     )
 
     make(

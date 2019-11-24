@@ -2,8 +2,12 @@
   font-size: 75%;
 }
 
-.rst-content code.xref {
+a.reference > code.xref {
   background-color: inherit;
   border: none;
   color: #2980B9;
+}
+
+.section {
+  clear: both;
 }
