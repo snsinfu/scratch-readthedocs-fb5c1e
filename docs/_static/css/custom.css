@@ -1,3 +1,9 @@
 .math {
   font-size: 75%;
 }
+
+.rst-content code.xref {
+  background-color: inherit;
+  border: none;
+  color: #2980B9;
+}
